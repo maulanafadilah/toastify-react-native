@@ -10,7 +10,12 @@ import { ToastManagerProps, ToastManagerState } from "../utils/interfaces";
 
 import styles from "./styles";
 
-const { height } = Dimensions.get("window");
+const getPortraitHeight = () => {
+  const { width, height } = Dimensions.get("window");
+  return Math.max(width, height); // Always returns the highest dimension (portrait height)
+};
+
+const height = getPortraitHeight();
 
 class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
   private timer: NodeJS.Timeout;
@@ -104,7 +109,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
   };
 
   pause = () => {
-    clearTimeout(this.timer); 
+    clearTimeout(this.timer);
     this.setState({ oldDuration: this.state.duration, duration: Number.MAX_VALUE });
     Animated.timing(this.state.barWidth, {
       toValue: 0,
