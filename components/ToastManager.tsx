@@ -2,7 +2,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import Modal from "react-native-modal";
 import React, { Component } from "react";
 import { RFPercentage } from "react-native-responsive-fontsize";
-import { View, Text, Animated, Dimensions, TouchableOpacity } from "react-native";
+import { View, Text, Animated, Dimensions, TouchableOpacity, ActivityIndicator } from "react-native";
 
 import { Colors } from "../config/theme";
 import defaultProps from "../utils/defaultProps";
@@ -206,7 +206,11 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
             </TouchableOpacity>
           )}
           <View style={styles.content}>
-            <Icon name={icon} size={22} color={barColor} style={styles.iconWrapper} />
+            {icon === "loading" ? (
+              <ActivityIndicator size={"small"} color={barColor} style={styles.iconWrapper} />
+            ) : (
+              <Icon name={icon} size={22} color={barColor} style={styles.iconWrapper} />
+            )}
             <Text style={[styles.textStyle, { color: Colors[theme].text, ...textStyle }]}>{text}</Text>
           </View>
           {showProgressBar && (
