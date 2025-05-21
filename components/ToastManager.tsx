@@ -97,7 +97,7 @@ class ToastManager extends Component<ToastManagerProps, ToastManagerState> {
     const { position } = this.state;
     if (position === "top") return this.props.positionValue;
     if (position === "center") return height / 2 - RFPercentage(9);
-    return height - this.props.positionValue - RFPercentage(10);
+    return height - this.props.positionValue - RFPercentage(20);
   };
 
   handleBar = () => {
